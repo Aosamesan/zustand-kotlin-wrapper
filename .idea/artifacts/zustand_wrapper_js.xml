@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="zustand-wrapper-js">
+    <output-path>$PROJECT_DIR$/build/libs</output-path>
+    <root id="archive" name="zustand-wrapper-js.jar">
+      <element id="module-output" name="zustand-wrapper.jsMain" />
+    </root>
+  </artifact>
+</component>
