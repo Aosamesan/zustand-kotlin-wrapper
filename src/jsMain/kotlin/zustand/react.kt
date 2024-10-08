@@ -1,9 +1,9 @@
 package zustand
 
 external interface ReadonlyStoreApi<T> {
-    val getState: () -> T
-    val getInitialState: () -> T
-    val subscribe: (listener: (state: T, prevState: T) -> Unit) -> () -> Unit
+    var getState: () -> T
+    var getInitialState: () -> T
+    var subscribe: (listener: (state: T, prevState: T) -> Unit) -> () -> Unit
 }
 
 @JsModule("zustand")

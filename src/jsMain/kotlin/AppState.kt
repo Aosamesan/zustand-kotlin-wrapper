@@ -1,7 +1,5 @@
 import js.objects.jso
-import zustand.StateCreator
-import zustand.createStore
-import zustand.createStoreContext
+import zustand.*
 import zustand.middlewares.devtools
 import zustand.middlewares.persist
 import zustand.middlewares.zustandLogger
@@ -28,7 +26,7 @@ val createAppState: StateCreator<AppState> = { set, get, api ->
 
         // actions
         increment = {
-            set { state ->
+            set.transformAction { state ->
                 jso {
                     count = state.count + 1
                 }
@@ -36,7 +34,7 @@ val createAppState: StateCreator<AppState> = { set, get, api ->
         }
 
         decrement = {
-            set { state ->
+            set.transformAction { state ->
                 jso {
                     count = state.count - 1
                 }
@@ -44,7 +42,7 @@ val createAppState: StateCreator<AppState> = { set, get, api ->
         }
 
         addCount = { num ->
-            set { state ->
+            set.transformAction { state ->
                 jso {
                     count = state.count + num
                 }
@@ -52,7 +50,7 @@ val createAppState: StateCreator<AppState> = { set, get, api ->
         }
 
         subtractCount = { num ->
-            set { state ->
+            set.transformAction { state ->
                 jso {
                     count = state.count - num
                 }
@@ -60,13 +58,13 @@ val createAppState: StateCreator<AppState> = { set, get, api ->
         }
 
         setMessage = { message ->
-            set(state = jso {
+            set.builderAction {
                 this.message = message
-            })
+            }
         }
 
         reset = {
-            set(state = api.getInitialState())
+            set.stateAction(api.getInitialState())
         }
     }
 }
